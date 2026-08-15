@@ -1,13 +1,14 @@
+import Link from "next/link";
+import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
- //"A software engineer swings between PTSD and programming. Passionate about web dev, Go, and system programming."
 const content = {
-  eyebrow: "cairo, egypt",
-  name: "Rofaida A. Mosa",
-  role: "Junior Software Engineer",
-
+  name: "Rofaida Mosa",
+  role: "Software Engineer",
   intro:
     "A software engineer swings between PTSD and programming. Passionate about web dev, Go, and system programming.",
-
+  email: "rofaidaahmed879@gmail.com",
+  github: "https://github.com/RofaidaAhmed-100",
+  linkedin: "https://www.linkedin.com/in/rofaida-ahmed-3402a2233/",
   projects: [
     {
       name: "Zawya Reservation API",
@@ -38,69 +39,118 @@ const content = {
 
 export default function Home() {
   return (
-    <main className="max-w-3xl mx-auto px-6 py-24 md:py-32">
-      <div className="flex items-center gap-2 font-mono text-sm text-accent mb-6">
-        <span className="w-2 h-2 rounded-full bg-accent shadow-[0_0_0_3px_rgba(31,156,138,0.15)]" />
-        {content.eyebrow}
-      </div>
-
-      <h1 className="font-display font-semibold text-4xl md:text-5xl leading-tight mb-3">
-        {content.name}
-      </h1>
-      <p className="font-mono text-accent-dim text-lg mb-10">
-        {content.role}
-      </p>
-
-      <p className="text-text-muted text-lg leading-relaxed mb-16 max-w-xl">
-        {content.intro}
-      </p>
-
-      {/* Projects */}
-      <div>
-        <div className="font-mono text-xs text-accent mb-2">
-          <span className="text-2xl">projects </span>
+    <div className="min-h-screen bg-background text-text">
+      {/* Navbar Links */}
+      <nav className="max-w-3xl mx-auto px-6 pt-8 pb-4 flex justify-end items-center font-mono text-sm">
+        <div className="flex gap-6 text-text-muted transition-colors">
+          <Link href="/outside-programming" className="hover:text-accent">
+            outside programming
+          </Link>
+          <Link href="/tech-reading" className="hover:text-accent">
+            tech reading
+          </Link>
         </div>
-        <h2 className="font-display font-semibold text-2xl mb-8">
-          A few things I&apos;ve shipped
-        </h2>
+      </nav>
 
-        <div className="space-y-4">
-          {content.projects.map((project) => (
+      <main className="max-w-3xl mx-auto px-6 py-16 md:py-24">
+        <h1 className="font-display font-semibold text-4xl md:text-5xl leading-tight mb-3">
+          {content.name}
+        </h1>
+        <p className="font-mono text-accent-dim text-lg mb-10">
+          {content.role}
+        </p>
+
+        <p className="text-text-muted text-lg leading-relaxed mb-16 max-w-xl">
+          {content.intro}
+        </p>
+
+        {/* Projects Section */}
+        <div className="mb-24">
+          <div className="font-mono text-sm md:text-base font-bold text-accent uppercase tracking-wider mb-2">
+            projects
+          </div>
+          <h2 className="font-display font-semibold text-2xl mb-8">
+            A few things I&apos;ve shipped
+          </h2>
+
+          <div className="space-y-4">
+            {content.projects.map((project) => (
+              <a
+                key={project.name}
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block bg-surface border border-border rounded-xl p-6 transition-colors hover:border-accent-dim"
+              >
+                <div className="flex items-center gap-3 mb-3 flex-wrap">
+                  <span className="font-mono text-xs font-semibold bg-accent text-white px-2 py-0.5 rounded">
+                    GET
+                  </span>
+                  <span className="font-mono text-sm text-text-muted">
+                    {project.path}
+                  </span>
+                </div>
+                <h3 className="font-display font-semibold text-lg mb-2">
+                  {project.name}
+                </h3>
+                <p className="text-text-muted text-sm leading-relaxed mb-4 max-w-xl">
+                  {project.description}
+                </p>
+                <div className="flex gap-2 flex-wrap">
+                  {project.tech.map((t) => (
+                    <span
+                      key={t}
+                      className="font-mono text-xs text-text-dim border border-border px-2 py-1 rounded"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {}
+        <div>
+          <div className="font-mono text-sm md:text-base font-bold text-accent uppercase tracking-wider mb-2">
+            contact
+          </div>
+          <h2 className="font-display font-semibold text-2xl mb-6">
+            Let&apos;s work together
+          </h2>
+
+          <div className="flex flex-col gap-4 font-mono text-sm md:text-base">
             <a
-              key={project.name}
-              href={project.link}
+              href={content.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="block bg-surface border border-border rounded-xl p-6 transition-colors hover:border-accent-dim"
+              className="flex items-center gap-3 text-text-muted hover:text-accent underline transition-colors w-fit"
             >
-              <div className="flex items-center gap-3 mb-3 flex-wrap">
-                <span className="font-mono text-xs font-semibold bg-accent text-white px-2 py-0.5 rounded">
-                  GET
-                </span>
-                <span className="font-mono text-sm text-text-muted">
-                  {project.path}
-                </span>
-              </div>
-              <h3 className="font-display font-semibold text-lg mb-2">
-                {project.name}
-              </h3>
-              <p className="text-text-muted text-sm leading-relaxed mb-4 max-w-xl">
-                {project.description}
-              </p>
-              <div className="flex gap-2 flex-wrap">
-                {project.tech.map((t) => (
-                  <span
-                    key={t}
-                    className="font-mono text-xs text-text-dim border border-border px-2 py-1 rounded"
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
+              <FaGithub className="text-2xl text-text shrink-0" />
+              <span>{content.github}</span>
             </a>
-          ))}
+
+            <a
+              href={content.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 text-text-muted hover:text-accent underline transition-colors w-fit"
+            >
+              <FaLinkedin className="text-2xl text-text shrink-0" />
+              <span>{content.linkedin}</span>
+            </a>
+
+            <a
+              href={`mailto:${content.email}`}
+              className="flex items-center gap-3 text-text-muted hover:text-accent underline transition-colors w-fit"
+            >
+              <FaEnvelope className="text-2xl text-text shrink-0" />
+              <span>{content.email}</span>
+            </a>
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </div>
   );
 }
